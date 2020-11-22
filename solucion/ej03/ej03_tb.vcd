@@ -1,0 +1,157 @@
+$date
+	Fri Nov 13 23:54:43 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module ALU_tb $end
+$var wire 4 ! res [3:0] $end
+$var reg 4 " A [3:0] $end
+$var reg 4 # B [3:0] $end
+$var reg 3 $ F [2:0] $end
+$scope module U1 $end
+$var wire 4 % A [3:0] $end
+$var wire 4 & B [3:0] $end
+$var wire 3 ' F [2:0] $end
+$var wire 4 ( res [3:0] $end
+$var reg 5 ) tempRes [4:0] $end
+$upscope $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+b10 )
+b10 (
+b0 '
+b11 &
+b10 %
+b0 $
+b11 #
+b10 "
+b10 !
+$end
+#1
+b11 !
+b11 (
+b11 )
+b1 $
+b1 '
+#2
+b101 !
+b101 (
+b101 )
+b10 $
+b10 '
+#3
+b0 !
+b0 (
+b0 )
+b100 $
+b100 '
+#4
+b1110 !
+b1110 (
+b11110 )
+b101 $
+b101 '
+#5
+b1111 !
+b1111 (
+b11111 )
+b110 $
+b110 '
+#6
+b1 !
+b1 (
+b1 )
+b111 $
+b111 '
+#8
+b0 !
+b0 (
+b0 )
+b0 $
+b0 '
+b1100 "
+b1100 %
+b10 #
+b10 &
+#9
+b1110 !
+b1110 (
+b1110 )
+b1 $
+b1 '
+#10
+b1110 )
+b10 $
+b10 '
+#11
+b1100 !
+b1100 (
+b1100 )
+b100 $
+b100 '
+#12
+b1101 !
+b1101 (
+b11101 )
+b101 $
+b101 '
+#13
+b1010 !
+b1010 (
+b1010 )
+b110 $
+b110 '
+#14
+b0 !
+b0 (
+b0 )
+b111 $
+b111 '
+#16
+b11 !
+b11 (
+b11 )
+b0 $
+b0 '
+b11 "
+b11 %
+b11 #
+b11 &
+#17
+b11 )
+b1 $
+b1 '
+#18
+b110 !
+b110 (
+b110 )
+b10 $
+b10 '
+#19
+b0 !
+b0 (
+b0 )
+b100 $
+b100 '
+#20
+b1111 !
+b1111 (
+b11111 )
+b101 $
+b101 '
+#21
+b0 !
+b0 (
+b0 )
+b110 $
+b110 '
+#22
+b111 $
+b111 '
+#100

@@ -1,0 +1,27 @@
+$date
+	Thu Nov 12 12:56:54 2020
+$end
+$version
+	Icarus Verilog
+$end
+$timescale
+	1ps
+$end
+$scope module counter_tb $end
+$var wire 12 ! outValue [11:0] $end
+$var reg 1 " clk $end
+$var reg 1 # enabled $end
+$var reg 1 $ load $end
+$var reg 12 % loadData [11:0] $end
+$var reg 1 & reset $end
+$upscope $end
+$enddefinitions $end
+#0
+$dumpvars
+0&
+b0 %
+0$
+0#
+0"
+bz !
+$end

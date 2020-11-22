@@ -1,0 +1,24 @@
+[*]
+[*] GTKWave Analyzer v3.3.77 (w)1999-2016 BSI
+[*] Thu Nov 19 17:47:38 2020
+[*]
+[dumpfile] "C:\Users\swimm\Documents\U\4. Semestre\Digital\Procesador\uP_tb.vcd"
+[dumpfile_mtime] "Thu Nov 19 17:44:12 2020"
+[dumpfile_size] 4449
+[savefile] "C:\Users\swimm\Documents\U\4. Semestre\Digital\Procesador\uP_tb.gtkw"
+[timestart] 0
+[size] 1000 600
+[pos] 220 -38
+*-3.203590 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[sst_width] 197
+[signals_width] 94
+[sst_expanded] 1
+[sst_vpaned_height] 153
+@28
+testbench.clk
+testbench.phase
+testbench.reset
+@23
+testbench.pc[11:0]
+[pattern_trace] 1
+[pattern_trace] 0
