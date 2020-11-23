@@ -1,3 +1,5 @@
+//Contador que se pone en 0 con reset, en load comienza a contar desde el valor
+//espcificado y solo cuenta si se activa el enabled
 module PC (input wire clock, reset, enabled, load, input wire [11:0]D, output reg [11:0]Q);
 always @(posedge clock or posedge reset) begin
 
@@ -11,6 +13,7 @@ always @(posedge clock or posedge reset) begin
 
 endmodule
 
+//Memoria rom que lee los datos del memory.list
 module ROM (input wire [11:0]M, output [7:0]O );
 assign O = m[M];
 reg[7:0] m[0:4095];
@@ -22,6 +25,7 @@ end
 
 endmodule
 
+//FFD de distintos bits para los demas modulos
 module FFD4 (input wire clock, reset, enabled, input wire [3:0]D, output wire [3:0]Q);
 
 FFD1 M3 (clock, reset, enabled, D[0], Q[0]);
@@ -41,11 +45,13 @@ always @(posedge clock or posedge reset) begin
   end
 endmodule
 
+//Fetch hecho con dos flip flops de 4 bits para separar oprnd e instr
 module Fetch (input wire clock, reset, enabled, input wire [7:0]D, output wire[3:0]op, ins);
 FFD4 m1(clock, reset, enabled, D[7:4], op[3:0]);
 FFD4 m9(clock, reset, enabled, D[3:0], ins[3:0]);
 endmodule
 
+//Decode hecho con un case para determinar las señales de salida
 module Decode (input wire [6:0]D, output reg [12:0]Q);
 
    always @(*) begin
@@ -78,6 +84,7 @@ end
 
 endmodule
 
+//ALU para las operaciones aritméticas con banderas por ceros y overflow
 module ALU (input [3:0]A, B, input [2:0]F, output [3:0]Y, output  FC, FZ);
   reg [4:0]S;
   always @(A, B, F)
@@ -96,14 +103,17 @@ module ALU (input [3:0]A, B, input [2:0]F, output [3:0]Y, output  FC, FZ);
 
 endmodule
 
+//Bus general para evitar contenciones en el data_bus
 module Bus(input wire [3:0]D, input wire B, output wire [3:0]Q);
   assign Q = B ? D : 4'bz;
 endmodule
 
+//ACCU hecho con flip flop simplemente para indicar valores almacenados
 module Accu(input wire clock, reset, enabled, input wire [3:0]D, output wire [3:0]Q);
 FFD4 F1(clock, reset, enabled, D, Q);
 endmodule
 
+//FF tipo T para que funcione a dos tiempos
 module Phase(input wire clock, reset, enabled, output reg Q);
 always @(posedge clock or posedge reset) begin
 if (reset) begin
@@ -116,7 +126,7 @@ else if (enabled) begin
 end
 endmodule
 
-
+//Flip FLOP D solo para dejar pasar data_bus a la salida
 module Out(input wire clock, reset, enabled, input wire [3:0]D, output reg [3:0]Q);
 always @(posedge clock or posedge reset) begin
 if (reset)
@@ -126,6 +136,7 @@ else if (enabled)
 end
 endmodule
 
+//RAM capaz de tirar y recibir datos por la misma compuerta
 module RAM(
 	input wire cs, we, input wire [11:0] dir, inout [3:0] data);
 	reg [3:0] dataO;
@@ -149,6 +160,7 @@ module RAM(
 
 endmodule
 
+//FFD de dos bits simplemente para indicar que hay cero u overflow
 module Flgs(input wire clock, reset, enabled, input wire [1:0]D, output wire [1:0]Q);
 FFD1 m6(clock, reset, enabled, D[0], Q[0]);
 FFD1 m8(clock, reset, enabled, D[1], Q[1]);
@@ -158,14 +170,17 @@ module uP(input wire clock, reset, input wire [3:0]pushbuttons, output wire phas
           output wire [3:0]instr, oprnd, accu, data_bus, FF_out, output wire [7:0] program_byte,
           output wire [11:0]PC, address_RAM);
 
+//cables internos que no eran primordiales en la salida como tal
 wire[3:0] O_ALU;
 wire[6:0] decode_in;
 wire[12:0] decode_out;
 wire C, ZERO;
 
+//concatenación para simplificar el cableado
 assign decode_in = {instr, c_flag, z_flag, phase};
 assign address_RAM={oprnd, program_byte};
 
+//aplicacion de todos los módulos juntos
 PC PC1(clock, reset, decode_out[12], decode_out[11], address_RAM, PC);
 ROM ROM1(PC, program_byte);
 Fetch Fetch1(clock, reset, ~phase, program_byte, instr, oprnd);
